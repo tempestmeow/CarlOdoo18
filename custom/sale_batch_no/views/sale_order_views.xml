@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <!-- Form view inheritance -->
-  <record id="view_order_line_form_inherit_batch" model="ir.ui.view">
-    <field name="name">sale.order.line.form.batch</field>
-    <field name="model">sale.order.line</field>
-    <field name="inherit_id" ref="sale.view_order_line_form"/>
+
+  <!-- Extend the form view of the sale order -->
+  <record id="view_order_form_inherit_batch" model="ir.ui.view">
+    <field name="name">sale.order.form.inherit.batch</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
-      <!-- locate the group containing product, qty, price_unit -->
-      <xpath expr="//group[./field[@name='product_id']]" position="inside">
-        <!-- Insert before quantity -->
+      <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+        <field name="batch_no" string="Batch No."/>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- Extend the pop-up form used for sale order lines -->
+  <record id="sale_order_line_form_inherit_batch" model="ir.ui.view">
+    <field name="name">sale.order.line.form.inherit.batch</field>
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_order_line"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='product_id']" position="after">
         <field name="batch_no" placeholder="Batch #"/>
       </xpath>
     </field>
   </record>
 
-  <!-- Tree (list) view inheritance -->
-  <record id="view_order_line_tree_inherit_batch" model="ir.ui.view">
-    <field name="name">sale.order.line.tree.batch</field>
-    <field name="model">sale.order.line</field>
-    <field name="inherit_id" ref="sale.view_order_line_tree"/>
-    <field name="arch" type="xml">
-      <!-- Add batch_no after product_id in list -->
-      <xpath expr="//field[@name='product_id']" position="after">
-        <field name="batch_no" string="Batch No."/>
-      </xpath>
-    </field>
-  </record>
 </odoo>
