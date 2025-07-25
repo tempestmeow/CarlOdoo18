@@ -1,0 +1,26 @@
+<odoo>
+  <!-- Add field to the tree (list) view -->
+  <record id="view_order_tree_inherit_batch_no" model="ir.ui.view">
+    <field name="name">sale.order.tree.batch.no</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="arch" type="xml">
+      <field name="state" position="after">
+        <field name="batch_no"/>
+      </field>
+    </field>
+  </record>
+
+  <!-- Add field to the form (header) view -->
+  <record id="view_order_form_inherit_batch_no" model="ir.ui.view">
+    <field name="name">sale.order.form.batch.no</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <!-- place it after the date field, for example -->
+      <xpath expr="//field[@name='date_order']" position="after">
+        <field name="batch_no"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
