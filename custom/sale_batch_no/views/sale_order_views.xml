@@ -1,0 +1,15 @@
+<odoo>
+  <!-- Inject Batch No into the order_line tree inside the Quotation form -->
+  <record id="sale_order_line_tree_inherit_batch_no" model="ir.ui.view">
+    <field name="name">sale.order.line.tree.batch.no</field>
+    <field name="model">sale.order.line</field>
+    <!-- inherit the standard tree view for lines -->
+    <field name="inherit_id" ref="sale.view_order_line_tree"/>
+    <field name="arch" type="xml">
+      <!-- insert batch_no right after product_id, before product_uom_qty -->
+      <field name="product_id" position="after">
+        <field name="batch_no"/>
+      </field>
+    </field>
+  </record>
+</odoo>
