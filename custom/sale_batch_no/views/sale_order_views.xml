@@ -17,7 +17,7 @@
   <record id="sale_order_line_form_inherit_batch" model="ir.ui.view">
     <field name="name">sale.order.line.form.inherit.batch</field>
     <field name="model">sale.order.line</field>
-    <field name="inherit_id" ref="sale.view_order_line_form2"/>
+    <field name="inherit_id" ref="sale.view_sale_order_line_form"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='product_id']" position="after">
         <field name="batch_no" placeholder="Batch #"/>
